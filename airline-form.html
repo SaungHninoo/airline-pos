@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add / Edit Airline</title>
+</head>
+<body>
+
+<h2 id="title">Add Airline</h2>
+
+<input type="hidden" id="airline_id" />
+
+<input id="shortname" placeholder="Airline Code" />
+<br><br>
+<input id="name" placeholder="Airline Name" />
+<br><br>
+<textarea id="remarks" placeholder="Remarks"></textarea>
+<br><br>
+
+<button onclick="saveAirline()">Save</button>
+<button onclick="cancel()">Cancel</button>
+
+<p id="msg"></p>
+
+<script type="module" src="./js/airline.js"></script>
+</body>
+</html>
