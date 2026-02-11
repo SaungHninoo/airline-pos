@@ -1,11 +1,320 @@
 <!DOCTYPE html>
-<html>
-<head><title>Customers</title></head>
-<body>
-<h1>Customers</h1>
-<input id="name" placeholder="Customer Name"/>
-<button id="addCustomer">Add</button>
-<ul id="customerList"></ul>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Directory - Travel Agency POS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b7cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex">
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-primary/10 flex-shrink-0 sticky top-0 h-screen hidden lg:flex flex-col">
+<div class="p-6">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-icons text-3xl">flight_takeoff</span>
+<span class="font-bold text-xl tracking-tight">SkyPath POS</span>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-primary/5 hover:text-primary transition-colors" href="#">
+<span class="material-icons">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-primary/5 hover:text-primary transition-colors" href="#">
+<span class="material-icons">receipt_long</span>
+<span class="font-medium">Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-primary/5 hover:text-primary transition-colors" href="#">
+<span class="material-icons">description</span>
+<span class="font-medium">Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary text-white shadow-lg shadow-primary/20" href="#">
+<span class="material-icons">people</span>
+<span class="font-medium">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-primary/5 hover:text-primary transition-colors" href="#">
+<span class="material-icons">explore</span>
+<span class="font-medium">Destinations</span>
+</a>
+</nav>
+<div class="p-4 border-t border-primary/10">
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-500 hover:bg-red-50 hover:text-red-500 cursor-pointer transition-colors">
+<span class="material-icons">logout</span>
+<span class="font-medium">Sign Out</span>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto">
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-10 border-b border-primary/10 px-8 py-4 flex items-center justify-between">
+<h1 class="text-2xl font-bold text-slate-800 dark:text-white">Customer Directory</h1>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons">notifications</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-slate-800 dark:text-white">Admin Sarah</p>
+<p class="text-xs text-slate-400">Senior Manager</p>
+</div>
+<img alt="Admin Avatar" class="h-10 w-10 rounded-full object-cover border-2 border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjN4LfKIVkJJstbioiMqwg8RexBrXd7KNreFGvm6f7X7SFy8qh0GfmXhVp52Wqet4oZ-JWY4GV62oIws9geLV-nxMfd-9Z_BRgb9efb6REiqJ-k5yWHOMXW-0A7duXyU3oDB9k2VxzMFIncUdFrhFXcxAJbjflfHAI-kbfIlJbnPFaFOoGHJoNYKNs19oRmQwwibvBeK_xop_cx22bqpSlWJDhj-Zpi0o7CKP4aorQUxGOP6mvKlc5Ag0vowdLPMvO7WNOuVnUzkw"/>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-primary/10 shadow-sm">
+<p class="text-slate-500 text-xs font-medium uppercase tracking-wider mb-2">Total Customers</p>
+<h3 class="text-2xl font-bold text-slate-800 dark:text-white">4,285</h3>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-primary/10 shadow-sm">
+<p class="text-slate-500 text-xs font-medium uppercase tracking-wider mb-2">Corporate Clients</p>
+<h3 class="text-2xl font-bold text-primary">1,102</h3>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-primary/10 shadow-sm">
+<p class="text-slate-500 text-xs font-medium uppercase tracking-wider mb-2">Individual Users</p>
+<h3 class="text-2xl font-bold text-slate-800 dark:text-white">3,183</h3>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-xl border border-primary/10 shadow-sm">
+<p class="text-slate-500 text-xs font-medium uppercase tracking-wider mb-2">New (30d)</p>
+<h3 class="text-2xl font-bold text-green-600">+124</h3>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 justify-between items-center">
+<div class="relative w-full sm:w-96">
+<span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900 border border-primary/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all shadow-sm" placeholder="Search full name, email or phone..." type="text"/>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex items-center justify-center gap-2 px-4 py-2.5 bg-white dark:bg-slate-900 border border-primary/10 rounded-lg text-slate-600 hover:text-primary hover:border-primary transition-all text-sm font-medium shadow-sm">
+<span class="material-symbols-outlined text-lg">filter_alt</span>
+                    Filters
+                </button>
+<button class="flex items-center justify-center gap-2 px-6 py-2.5 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-medium shadow-lg shadow-primary/20" onclick="document.getElementById('addCustomerModal').classList.remove('hidden')">
+<span class="material-icons text-lg">add</span>
+                    Add Customer
+                </button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-primary/10 shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-primary/5">
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Full Name</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Phone Number</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Email Address</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Gender</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Type</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5">
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">MT</div>
+<span class="font-medium text-slate-800 dark:text-white">Marcus Thompson</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 font-mono">+1 (555) 123-4567</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">marcus.t@email.com</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Male</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-blue-100 text-blue-700">Corporate</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all" title="Edit">
+<span class="material-symbols-outlined text-xl">edit_square</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-xs font-bold">ER</div>
+<span class="font-medium text-slate-800 dark:text-white">Elena Rodriguez</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 font-mono">+34 912 345 678</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">elena.rod@webmail.com</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Female</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-slate-100 text-slate-600">Individual</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all" title="Edit">
+<span class="material-symbols-outlined text-xl">edit_square</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="bg-red-50/30 dark:bg-red-900/10 border-red-100 dark:border-red-900/50">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-xs font-bold">JS</div>
+<span class="font-medium text-slate-800 dark:text-white">James Smith</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 font-mono">+44 20 7946 0958</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">j.smith@corporate.com</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Male</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-blue-100 text-blue-700">Corporate</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<span class="text-xs font-semibold text-red-600">Delete?</span>
+<button class="px-3 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-colors shadow-sm">Confirm</button>
+<button class="px-3 py-1 bg-slate-200 text-slate-600 text-xs rounded hover:bg-slate-300 transition-colors">Cancel</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-bold">LW</div>
+<span class="font-medium text-slate-800 dark:text-white">Liam Wilson</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 font-mono">+61 2 9876 5432</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">liam.wilson@mail.com</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Male</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-slate-100 text-slate-600">Individual</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all" title="Edit">
+<span class="material-symbols-outlined text-xl">edit_square</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all" title="Delete">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-primary/5 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30">
+<p class="text-sm text-slate-500">
+                    Showing <span class="font-semibold text-slate-800 dark:text-white">1</span> to <span class="font-semibold text-slate-800 dark:text-white">10</span> of <span class="font-semibold text-slate-800 dark:text-white">4,285</span> customers
+                </p>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:text-primary disabled:opacity-30" disabled="">
+<span class="material-icons">chevron_left</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold shadow-sm shadow-primary/20">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/10 text-slate-600 text-sm font-medium">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/10 text-slate-600 text-sm font-medium">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/10 text-slate-600 text-sm font-medium">429</button>
+</div>
+<button class="p-2 text-slate-400 hover:text-primary">
+<span class="material-icons">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm hidden" id="addCustomerModal">
+<div class="bg-white dark:bg-slate-900 w-full max-w-xl rounded-2xl shadow-2xl border border-primary/10 overflow-hidden m-4">
+<div class="px-8 py-6 border-b border-primary/5 flex items-center justify-between">
+<div>
+<h2 class="text-xl font-bold text-slate-800 dark:text-white">Add New Customer</h2>
+<p class="text-sm text-slate-500">Fill in the details to create a new profile.</p>
+</div>
+<button class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors" onclick="document.getElementById('addCustomerModal').classList.add('hidden')">
+<span class="material-icons">close</span>
+</button>
+</div>
+<form class="p-8 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2 col-span-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 block">Full Name</label>
+<input class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-primary/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all" placeholder="e.g. John Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 block">Phone Number</label>
+<input class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-primary/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 block">Email Address</label>
+<input class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-primary/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all" placeholder="john.doe@example.com" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 block">Gender</label>
+<select class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-primary/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+<option value="">Select Gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+<option value="other">Other</option>
+<option value="prefer_not_to_say">Prefer not to say</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-500 block">Customer Type</label>
+<select class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-primary/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm transition-all">
+<option value="1">Individual</option>
+<option value="2">Corporate</option>
+<option value="3">Government</option>
+<option value="4">VIP</option>
+</select>
+</div>
+</div>
+<div class="flex items-center justify-end gap-3 pt-4">
+<button class="px-6 py-2.5 text-sm font-medium text-slate-600 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-colors" onclick="document.getElementById('addCustomerModal').classList.add('hidden')" type="button">
+                    Cancel
+                </button>
+<button class="px-8 py-2.5 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all text-sm font-semibold shadow-lg shadow-primary/20" type="submit">
+                    Save Customer
+                </button>
+</div>
+</form>
+</div>
+</div>
+
+
 <script type="module" src="./js/customers.js"></script>
-</body>
-</html>
+</body></html>

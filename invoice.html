@@ -1,10 +1,276 @@
 <!DOCTYPE html>
-<html>
-<head><title>Invoice</title></head>
-<body>
-<h1>Invoice</h1>
-<p>Invoice No: <span id="invoiceNo"></span></p>
-<p>Amount: <span id="invoiceAmount"></span></p>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Professional Printable Invoice - Travel Agency POS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e293b",
+                        "accent": "#2b7cee",
+                        "background-light": "#f1f5f9",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.375rem", "xl": "0.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .invoice-container {
+                box-shadow: none !important;
+                border: none !important;
+                width: 100% !important;
+                max-width: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+            table {
+                border-collapse: collapse !important;
+            }
+            th, td {
+                border: 1px solid #e2e8f0 !important;
+            }
+        }
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 min-h-screen">
+<div class="sticky top-0 z-50 w-full bg-white/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 no-print">
+<div class="max-w-4xl mx-auto px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-icons text-xl leading-none">arrow_back</span>
+</button>
+<h1 class="text-sm font-bold uppercase tracking-wider text-slate-500">Invoice Viewer</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-accent hover:bg-accent/90 text-white rounded font-semibold transition-all shadow-sm text-sm" onclick="window.print()">
+<span class="material-icons text-lg">print</span> Print Invoice
+            </button>
+</div>
+</div>
+</div>
+<main class="max-w-4xl mx-auto p-0 md:py-10 md:px-6">
+<div class="invoice-container bg-white dark:bg-slate-900 shadow-2xl md:border border-slate-200 dark:border-slate-800 min-h-[297mm]">
+<div class="p-10 flex flex-col md:flex-row justify-between items-start gap-8">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-primary text-white flex items-center justify-center rounded-sm">
+<span class="material-icons text-4xl">travel_explore</span>
+</div>
+<div>
+<h2 class="text-2xl font-black text-primary dark:text-white leading-none mb-1">SKYBOUND TRAVEL</h2>
+<p class="text-xs font-bold text-accent tracking-[0.2em] uppercase">International Tours &amp; Travels</p>
+<div class="mt-2 text-[11px] text-slate-500 leading-tight">
+<p>1240 Broadway, 4th Floor, New York, NY 10001</p>
+<p>Phone: +1 212-555-0123 | IATA: 91-2 8342 1</p>
+<p>Web: www.skybound.travel</p>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<h1 class="text-5xl font-black text-slate-200 dark:text-slate-800 mb-4 select-none">INVOICE</h1>
+<div class="space-y-1">
+<p class="text-sm font-bold text-slate-900 dark:text-white uppercase">Invoice Number: <span class="font-mono text-accent">#INV-882910</span></p>
+<p class="text-sm text-slate-500">Issue Date: <span class="text-slate-900 dark:text-white font-medium">Oct 24, 2023</span></p>
+<p class="text-sm text-slate-500">Booking Ref: <span class="text-slate-900 dark:text-white font-medium">BKG-9921-X</span></p>
+</div>
+</div>
+</div>
+<div class="h-px bg-slate-100 dark:bg-slate-800 mx-10"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 p-10 gap-10">
+<div>
+<h3 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-100 dark:border-slate-800 pb-1">Client Details</h3>
+<div class="space-y-1">
+<p class="text-lg font-bold text-slate-900 dark:text-white">Alexander Thompson</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">822 Ocean Drive, Suite 402</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Miami, FL 33139, USA</p>
+<p class="text-sm text-slate-600 dark:text-slate-400 font-medium mt-2">alex.thompson@example.com</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">+1 (305) 555-0188</p>
+</div>
+</div>
+<div>
+<h3 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 border-b border-slate-100 dark:border-slate-800 pb-1">Service Summary</h3>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Main Service:</span>
+<span class="font-bold text-slate-900 dark:text-white">Air Ticket &amp; Visa Processing</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Travel Class:</span>
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[10px] font-bold uppercase tracking-tight">Business Class</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Passport Number:</span>
+<span class="font-mono text-slate-900 dark:text-white">US-*****4492</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">Visa Status:</span>
+<span class="text-green-600 font-bold uppercase text-[10px]">Approved</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-10 pb-6">
+<div class="bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 p-4 rounded">
+<h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
+<span class="material-icons text-sm">group</span> List of Travellers
+                </h4>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-6">
+<div class="text-xs font-semibold text-slate-700 dark:text-slate-300">1. Alexander Thompson (Primary)</div>
+<div class="text-xs font-semibold text-slate-700 dark:text-slate-300">2. Sarah Thompson</div>
+<div class="text-xs font-semibold text-slate-700 dark:text-slate-300">3. Julian Thompson</div>
+</div>
+</div>
+</div>
+<div class="px-10">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary text-white">
+<th class="px-4 py-3 text-[11px] font-bold uppercase tracking-widest w-16 text-center">No.</th>
+<th class="px-4 py-3 text-[11px] font-bold uppercase tracking-widest">Service Description</th>
+<th class="px-4 py-3 text-[11px] font-bold uppercase tracking-widest text-center w-20">Qty/Pax</th>
+<th class="px-4 py-3 text-[11px] font-bold uppercase tracking-widest text-right w-32">Unit Price</th>
+<th class="px-4 py-3 text-[11px] font-bold uppercase tracking-widest text-right w-32">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800 border-x border-b border-slate-200 dark:border-slate-800">
+<tr>
+<td class="px-4 py-4 text-sm text-center font-mono text-slate-400 italic">01</td>
+<td class="px-4 py-4">
+<p class="font-bold text-slate-900 dark:text-white">Round Trip Ticket: JFK → LHR → DXB</p>
+<p class="text-xs text-slate-500 italic mt-0.5">Emirates - Business Class Flex | PNR: EK77W90</p>
+</td>
+<td class="px-4 py-4 text-center text-sm font-medium">03</td>
+<td class="px-4 py-4 text-right text-sm text-slate-600 dark:text-slate-400">$2,450.00</td>
+<td class="px-4 py-4 text-right font-bold text-slate-900 dark:text-white">$7,350.00</td>
+</tr>
+<tr>
+<td class="px-4 py-4 text-sm text-center font-mono text-slate-400 italic">02</td>
+<td class="px-4 py-4">
+<p class="font-bold text-slate-900 dark:text-white">Tourist Visa Processing - UAE</p>
+<p class="text-xs text-slate-500 italic mt-0.5">Standard 30 Days Single Entry (Inc. Service Fees)</p>
+</td>
+<td class="px-4 py-4 text-center text-sm font-medium">03</td>
+<td class="px-4 py-4 text-right text-sm text-slate-600 dark:text-slate-400">$185.00</td>
+<td class="px-4 py-4 text-right font-bold text-slate-900 dark:text-white">$555.00</td>
+</tr>
+<tr>
+<td class="px-4 py-4 text-sm text-center font-mono text-slate-400 italic">03</td>
+<td class="px-4 py-4">
+<p class="font-bold text-slate-900 dark:text-white">Travel Insurance Premium</p>
+<p class="text-xs text-slate-500 italic mt-0.5">Global Coverage - Platinum Plan</p>
+</td>
+<td class="px-4 py-4 text-center text-sm font-medium">01</td>
+<td class="px-4 py-4 text-right text-sm text-slate-600 dark:text-slate-400">$120.00</td>
+<td class="px-4 py-4 text-right font-bold text-slate-900 dark:text-white">$120.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-10 py-10 flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="flex-1 space-y-6">
+<div>
+<h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Internal Reference</h4>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 border border-dashed border-slate-300 dark:border-slate-700 rounded text-xs space-y-1">
+<div class="flex justify-between">
+<span class="text-slate-500">Exchange Rate:</span>
+<span class="font-mono font-bold text-slate-900 dark:text-white">1 USD = 3.67 AED</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Method:</span>
+<span class="text-slate-900 dark:text-white uppercase font-semibold">Bank Transfer (Swift)</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500">Collector Name:</span>
+<span class="text-slate-900 dark:text-white uppercase font-bold underline decoration-slate-300">Sarah Jenkins</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6 mt-8">
+<div class="flex flex-col gap-1">
+<p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">Collector Signature</p>
+<div class="w-48 h-px bg-slate-300 dark:bg-slate-600 mt-10"></div>
+<p class="text-[10px] italic text-slate-400">Authorized Personnel</p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-80">
+<div class="space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500 uppercase tracking-tighter font-semibold">Subtotal</span>
+<span class="font-bold text-slate-900 dark:text-white">$8,025.00</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500 uppercase tracking-tighter font-semibold">Taxes &amp; Fees (5%)</span>
+<span class="font-bold text-slate-900 dark:text-white">$401.25</span>
+</div>
+<div class="flex justify-between items-center text-sm text-green-600">
+<span class="uppercase tracking-tighter font-semibold">Seasonal Discount</span>
+<span class="font-bold">-$250.00</span>
+</div>
+<div class="h-px bg-slate-200 dark:bg-slate-800 my-4"></div>
+<div class="flex justify-between items-center bg-slate-900 text-white p-4 rounded-sm">
+<span class="text-sm font-black uppercase tracking-[0.2em]">Grand Total</span>
+<span class="text-2xl font-black">$8,176.25</span>
+</div>
+<div class="text-[10px] text-right text-slate-400 uppercase font-bold tracking-widest pt-2">
+                        Equivalent: AED 30,006.84
+                    </div>
+</div>
+</div>
+</div>
+<div class="mt-auto px-10 pb-10">
+<div class="border-t border-slate-100 dark:border-slate-800 pt-6">
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-2">
+<h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400">Terms &amp; Conditions</h4>
+<p class="text-[9px] text-slate-500 leading-relaxed italic">
+                            All flight tickets are non-refundable 24 hours after booking. Visa fees are non-refundable regardless of outcome. Any changes to travel dates may incur additional airline and agency charges. All payments are final upon issuance of travel documents.
+                        </p>
+</div>
+<div class="text-right flex flex-col justify-end">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-1">Thank you for choosing SkyBound</p>
+<p class="text-[10px] text-slate-300">Computer generated document. No physical signature required unless specified.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-center px-6 no-print text-slate-400">
+<p class="text-[10px] uppercase font-bold tracking-widest">System generated: 2023-10-24 14:32:01 UTC</p>
+<div class="flex gap-4">
+<a class="text-[10px] uppercase font-bold tracking-widest hover:text-accent transition-colors" href="#">Help Center</a>
+<a class="text-[10px] uppercase font-bold tracking-widest hover:text-accent transition-colors" href="#">Privacy</a>
+</div>
+</div>
+</main>
+
+
 <script type="module" src="./js/invoice.js"></script>
-</body>
-</html>
+</body></html>
