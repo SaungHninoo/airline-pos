@@ -1,26 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Airline List</title>
-</head>
+<head><title>Dashboard</title></head>
 <body>
-
-<h2>Airlines</h2>
-
-<button onclick="loadAirlines()">Refresh</button>
-<button onclick="exportExcel()">Export Excel</button>
-<button onclick="logout()">Logout</button>
-<table border="1" id="airlineTable">
-  <tr>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Action</th>
-  </tr>
-</table>
-
-<p>Total Airlines: <span id="count">0</span></p>
-
-<script type="module" src="./js/airline.js"></script>
-<script type="module" src="./js/auth.js"></script>
+<h1>Dashboard</h1>
+<p>Total Sales: <span id="totalSales">0</span></p>
+<button id="logout">Logout</button>
+<script type="module" src="./js/dashboard.js"></script>
 </body>
 </html>
